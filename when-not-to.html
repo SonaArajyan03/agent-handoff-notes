@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>When not to hand a task to an agent</title>
+<meta name="description" content="Handoff has real overhead. Four categories of work where writing the spec costs more than doing the job, and the one signal that predicts it.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="home" href="./">Notes on handing work to coding agents</a>
+<div class="sub">Working notes, updated as I learn things the hard way.</div></header>
+
+<h1>When not to hand a task to an agent</h1>
+<p class="lede">Most writing on this assumes you should. The overhead is real and it is worth naming where it does not pay.</p>
+
+<p>Handing work over costs something: writing the intent, the paths, the acceptance command, the prior art. Call it fifteen to forty minutes for a task of any substance. That cost is fixed, it is paid by your most context-rich person, and it does not shrink with practice as much as people hope.</p>
+
+<p>So the honest question is not &ldquo;can an agent do this?&rdquo; but &ldquo;is this task bigger than its own spec?&rdquo;</p>
+
+<h2>Four places it does not pay</h2>
+<ul>
+<li><strong>Work smaller than its brief.</strong> A one-line config change takes ninety seconds and a twenty-minute spec. Just do it. This is the most common mistake and the easiest to avoid.</li>
+<li><strong>Work where the hard part is deciding.</strong> If nobody can yet say what correct looks like, the spec cannot say it either, and you will get a confident implementation of the wrong thing. Decide first, hand off second.</li>
+<li><strong>Work whose acceptance needs taste.</strong> &ldquo;Does this copy sound like us&rdquo; and &ldquo;is this animation nice&rdquo; have no command that exits zero. You can still hand these over, but budget for a human review that is as long as the work, and stop pretending the loop is cheap.</li>
+<li><strong>Work touching something you cannot cleanly bound.</strong> If you cannot describe the blast radius, you cannot review the diff against it, and &ldquo;it also changed some other files&rdquo; is a finding you will make too late.</li>
+</ul>
+
+<h2>The signal that predicts it</h2>
+<p>The one I trust: try to write the acceptance check first, before anything else. If you can write it in a minute, the task is a good candidate. If you find yourself writing prose instead of a command, that is the task telling you it needs a decision or a conversation, not an agent.</p>
+
+<p>This is a cheap test and it fails fast, which is the whole point. Ten minutes into writing a spec you are already committed; ninety seconds into writing an acceptance check you are not.</p>
+
+<h2>What is left</h2>
+<p>After those exclusions, what remains is a narrower band than the enthusiastic version of this promises, and it is still most of a backlog: medium-sized, well-understood, tedious, mechanically checkable. That band is genuinely worth industrialising. The rest is worth protecting from process.</p>
+
+<p>On the mechanics of the handoff itself once you have decided a task qualifies, <a href="https://wagglet.com/docs/task-handoff">the task-handoff docs</a> lay out what actually travels with the task.</p>
+
+<footer>Maintained by Sona Arajyan. These are personal working notes and not documentation for any product.</footer>
+</div></body></html>
