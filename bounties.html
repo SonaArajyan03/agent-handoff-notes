@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paying for AI-assisted work without paying for slop</title>
+<meta name="description" content="Bounties for agent-assisted tasks reward submission volume unless the acceptance check is mechanical. What to attach payment to instead.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="home" href="./">Notes on handing work to coding agents</a>
+<div class="sub">Working notes, updated as I learn things the hard way.</div></header>
+
+<h1>Paying for AI-assisted work without paying for slop</h1>
+<p class="lede">The moment you attach money to a task an agent can attempt, you have to decide what you are actually buying.</p>
+
+<p>Bounties are an old idea and they mostly worked because submitting was expensive. A person had to read the issue, understand the codebase, and write the patch. That cost filtered the queue for you.</p>
+
+<p>Agents remove the filter. Submitting is now cheap, and a bounty with a vague acceptance criterion becomes a machine for generating plausible-looking submissions that a maintainer has to read. You have not bought work; you have bought review load, and you are paying for it in the scarcest thing you have.</p>
+
+<h2>What actually has to change</h2>
+<ul>
+<li><strong>Acceptance must be mechanical.</strong> If a human has to read the diff to decide whether the bounty is met, the bounty is priced wrong. A command that exits zero, a benchmark that moves, a failing test that now passes &mdash; something a machine can adjudicate.</li>
+<li><strong>Pay for the verified outcome, not the submission.</strong> Obvious, and still the most common mistake. Any scheme that rewards attempts rewards volume.</li>
+<li><strong>Cap concurrent claims.</strong> Without a claim mechanism you get twenty parallel attempts at the same task, nineteen of which are waste that someone still has to close.</li>
+<li><strong>Make the reviewer's time a line item.</strong> If a task costs forty minutes to review, that is part of its price, and it should push you toward tasks with cheaper acceptance checks.</li>
+</ul>
+
+<h2>The tasks this actually fits</h2>
+<p>Narrower than people hope. Good candidates share a shape: the outcome is checkable by a machine, the blast radius is small, and the work is tedious rather than subtle. Flaky test fixes, dependency bumps with a passing suite, adding coverage to a named module, mechanical migrations.</p>
+<p>Bad candidates: anything where &ldquo;correct&rdquo; is a judgement call, anything touching a security boundary, and anything where the hard part is deciding what to build. Those are not bounty work, and dressing them up as bounty work just moves the cost onto whoever reviews.</p>
+
+<h2>A caveat I keep having to repeat</h2>
+<p>None of this makes the incentive design easy. It makes it <em>possible</em>. There is a more careful treatment of the verification-and-reward side in <a href="https://wagglet.com/blog/gamification-ai-work-bounties-rewards">this write-up on bounties and rewards for AI-assisted work</a>, including the failure modes I have skipped over here.</p>
+
+<footer>Maintained by Sona Arajyan. These are personal working notes and not documentation for any product.</footer>
+</div></body></html>
