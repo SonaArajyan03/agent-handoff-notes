@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent capacity is a scheduling problem, not a budget problem</title>
+<meta name="description" content="Per-seat agent limits strand capacity across a team. What to measure instead of seats.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="home" href="./">Notes on handing work to coding agents</a>
+<div class="sub">Working notes, updated as I learn things the hard way.</div></header>
+
+<h1>Agent capacity is a scheduling problem, not a budget problem</h1>
+<p class="lede">Every seat-based plan quietly creates stranded capacity. The fix is routing, not a bigger plan.</p>
+
+<p>Agent subscriptions are sold per person, but the work does not arrive per person. On any given week a couple of people on a team burn through their limit by Wednesday while several others barely touch theirs. Add up the unused share and it is usually a large fraction of what the team is paying for.</p>
+
+<p>The instinct is to buy more seats for the heavy users. That treats it as a budget problem. It is not: the capacity already exists inside the team, it is just parked next to the wrong person.</p>
+
+<h2>Why it strands</h2>
+<p>Three things have to line up for someone's spare capacity to be usable by someone else:</p>
+<ul>
+<li>The blocked person has to know that spare capacity exists. Usually nobody can see anyone else's usage.</li>
+<li>The task has to be portable &mdash; written well enough that a different person's agent can run it without the original author sitting there. That is a <a href="task-spec.html">spec-writing problem</a>.</li>
+<li>Running it must not require sharing a login. This is where most informal arrangements die, and rightly so.</li>
+</ul>
+
+<p>That third point is the one people underrate. &ldquo;Just use my account&rdquo; is how teams end up with a shared credential in a chat thread, no attribution on the work, and a plan-terms violation. The correct shape is to move the <em>task</em> to another person's own subscription, not to move the account to another person. There is a longer argument for that framing in
+<a href="https://wagglet.com/blog/use-unused-claude-code-codex-capacity">this piece on using the AI capacity a company already pays for</a>.</p>
+
+<h2>What to measure instead of seats</h2>
+<p>If you want a number that actually tells you something, stop counting seats and start counting these:</p>
+<ul>
+<li><strong>Blocked-hours.</strong> Time where someone had a ready, specified task and no capacity to run it. This is the real cost, and it is invisible on any billing page.</li>
+<li><strong>Handoff rate.</strong> How many tasks in a week were run by someone other than their author. If it is zero, your tasks are not portable and the capacity cannot move even in principle.</li>
+<li><strong>Spec rejection rate.</strong> How often a handed-over task comes back needing clarification. Rising rejection means you are shipping vagueness, not work.</li>
+</ul>
+
+<h2>The uncomfortable part</h2>
+<p>Routing spare capacity only pays off if tasks are written well, and writing tasks well is slower than doing the work yourself for anything small. So this does not help with small things, and pretending otherwise wastes everyone's afternoon. It helps with the medium-sized, well-understood, tedious work &mdash; which, fortunately, is most of the backlog.</p>
+
+<footer>Maintained by Sona Arajyan. These are personal working notes and not documentation for any product.</footer>
+</div></body></html>

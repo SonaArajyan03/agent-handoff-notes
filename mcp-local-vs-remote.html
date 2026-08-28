@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Local vs remote MCP servers: picking the boring one</title>
+<meta name="description" content="A decision table for choosing between a local stdio MCP server and a hosted remote endpoint: trust boundary, latency, credentials, and debuggability.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="home" href="./">Notes on handing work to coding agents</a>
+<div class="sub">Working notes, updated as I learn things the hard way.</div></header>
+
+<h1>Local vs remote MCP servers: picking the boring one</h1>
+<p class="lede">Almost every argument about this is really an argument about who holds the credential.</p>
+
+<p>A Model Context Protocol server can run as a local process the client launches over stdio, or as an HTTP endpoint someone else hosts. People debate this as though it were a performance question. It usually is not.</p>
+
+<h2>The decision table</h2>
+<table style="width:100%;border-collapse:collapse;margin:1rem 0">
+<tr><th style="text-align:left;padding:.5rem;border-bottom:2px solid var(--line)">Question</th>
+<th style="text-align:left;padding:.5rem;border-bottom:2px solid var(--line)">Local (stdio)</th>
+<th style="text-align:left;padding:.5rem;border-bottom:2px solid var(--line)">Remote (HTTP)</th></tr>
+<tr><td style="padding:.5rem;border-bottom:1px solid var(--line)">Who holds the secret</td><td style="padding:.5rem;border-bottom:1px solid var(--line)">The user's machine</td><td style="padding:.5rem;border-bottom:1px solid var(--line)">The host, via OAuth</td></tr>
+<tr><td style="padding:.5rem;border-bottom:1px solid var(--line)">Touches local files</td><td style="padding:.5rem;border-bottom:1px solid var(--line)">Yes, naturally</td><td style="padding:.5rem;border-bottom:1px solid var(--line)">No</td></tr>
+<tr><td style="padding:.5rem;border-bottom:1px solid var(--line)">Install cost per user</td><td style="padding:.5rem;border-bottom:1px solid var(--line)">Real &mdash; runtime, version drift</td><td style="padding:.5rem;border-bottom:1px solid var(--line)">A URL</td></tr>
+<tr><td style="padding:.5rem;border-bottom:1px solid var(--line)">You can ship a fix</td><td style="padding:.5rem;border-bottom:1px solid var(--line)">When users update</td><td style="padding:.5rem;border-bottom:1px solid var(--line)">Immediately</td></tr>
+<tr><td style="padding:.5rem;border-bottom:1px solid var(--line)">Debuggable by the user</td><td style="padding:.5rem;border-bottom:1px solid var(--line)">Yes &mdash; it is a process</td><td style="padding:.5rem;border-bottom:1px solid var(--line)">Only what you log</td></tr>
+</table>
+
+<h2>The rule I actually use</h2>
+<p>If the server needs the user's filesystem or a secret you must never see, it goes local. If it is a wrapper over a service you already operate, it goes remote, because the install cost of local servers is the thing that silently kills adoption.</p>
+
+<p>The mistake I see most often is shipping a local server whose only job is to call a hosted API. Now every user is running a version of your client code, and you cannot fix a bug without a release. That is all downside.</p>
+
+<h2>If you go remote, do the auth properly</h2>
+<p>A remote MCP endpoint should advertise its protected-resource metadata so a client can discover how to authenticate, rather than expecting a hand-pasted token. A 401 that names a
+<code>.well-known/oauth-protected-resource</code> document, which then actually serves JSON, is the difference between &ldquo;works in any client&rdquo; and &ldquo;works in the one I tested&rdquo;. If you want a worked example of a hosted endpoint set up this way, <a href="https://wagglet.com/docs/mcp">Wagglet's MCP docs</a> lay the flow out end to end.</p>
+
+<p>Test it with a bare <code>curl</code> before you believe it. Plenty of endpoints return the right header and then redirect the metadata URL to a marketing page, which no client can use.</p>
+
+<footer>Maintained by Sona Arajyan. These are personal working notes and not documentation for any product.</footer>
+</div></body></html>

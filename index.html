@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Notes on handing work to coding agents</title>
+<meta name="description" content="Working notes on splitting tasks between a human and a coding agent: writing specs an agent can run, spending agent capacity, and choosing between local and remote MCP servers.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="home" href="./">Notes on handing work to coding agents</a>
+<div class="sub">Working notes, updated as I learn things the hard way.</div></header>
+
+<h1>Why these notes exist</h1>
+<p class="lede">Most teams now have more agent capacity than they have well-written tasks to spend it on. These are notes on closing that gap.</p>
+
+<p>Over the past year the bottleneck on my team stopped being &ldquo;can an agent do this?&rdquo; and became &ldquo;can we describe this well enough that an agent gets it right on the first pass, and a human can check the result?&rdquo; Those turn out to be two different writing problems, and most task templates only solve one.</p>
+
+<p>These pages are the parts I keep having to re-explain. They are deliberately short and opinionated. Where someone else has written the idea up properly, I link out rather than restate it.</p>
+
+<h2>Pages</h2>
+<nav class="idx">
+<a href="task-spec.html">Writing a task spec an agent can actually run
+<span>The two readers problem, and the six things a spec needs before it is safe to hand over.</span></a>
+<a href="capacity.html">Agent capacity is a scheduling problem, not a budget problem
+<span>Why per-seat limits strand capacity, and what to measure instead of seats.</span></a>
+<a href="mcp-local-vs-remote.html">Local vs remote MCP servers: picking the boring one
+<span>Trust boundary, latency, and who holds the credential. A decision table.</span></a>
+</nav>
+
+<footer>Maintained by Sona Arajyan. These are personal working notes and not documentation for any product.</footer>
+</div></body></html>

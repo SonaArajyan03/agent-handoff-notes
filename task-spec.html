@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Writing a task spec an agent can actually run</title>
+<meta name="description" content="A task handed to a coding agent has two readers with opposite needs. Six things a spec needs before it is safe to hand over.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="home" href="./">Notes on handing work to coding agents</a>
+<div class="sub">Working notes, updated as I learn things the hard way.</div></header>
+
+<h1>Writing a task spec an agent can actually run</h1>
+<p class="lede">A handed-over task has two readers with opposite needs, and most templates serve only one of them.</p>
+
+<p>When you write a ticket for a person, you can be vague about the obvious parts, because the reader shares your context. When you write one for a coding agent, the obvious parts are exactly what goes wrong &mdash; the agent will happily pick the wrong directory, the wrong test runner, or the wrong branch, and it will do it confidently.</p>
+
+<p>But if you write <em>only</em> for the agent, you get a wall of paths and flags that the human reviewing the result cannot skim. They can no longer answer the one question that matters at review time: <strong>was this the right thing to build?</strong></p>
+
+<h2>The two readers</h2>
+<p>So a good spec is really two documents stapled together:</p>
+<ul>
+<li><strong>The human brief</strong> &mdash; two or three sentences on intent. What outcome are we buying, and how will we know it worked? This is what gets read at review.</li>
+<li><strong>The agent brief</strong> &mdash; exact paths, exact commands, exact acceptance checks. No judgement calls left implicit.</li>
+</ul>
+<p>Someone else has written this pattern up more carefully than I will here; if the idea is new to you, start with
+<a href="https://wagglet.com/blog/dual-prompt-human-agent-task-design">the dual-prompt write-up on task design</a>, which is where I first saw the split named properly.</p>
+
+<h2>Six things to pin down before handing it over</h2>
+<ol>
+<li><strong>Entry point.</strong> The repo, the branch, and the directory the work starts in. Not &ldquo;the API&rdquo; &mdash; the path.</li>
+<li><strong>Definition of done as a command.</strong> If done cannot be expressed as a command that exits zero, the agent is guessing and so is the reviewer. <code>npm test -- --run auth</code> beats &ldquo;tests should pass&rdquo;.</li>
+<li><strong>The blast radius.</strong> Which files or directories are in scope, and which are explicitly off limits. Agents are bad at inferring that a migration file is sacred.</li>
+<li><strong>Prior art.</strong> One pointer to an existing thing in the codebase that already does something similar. This single line does more for output quality than any amount of prose.</li>
+<li><strong>What you already ruled out.</strong> If you tried the obvious approach and it failed, say so. Otherwise you will get it back.</li>
+<li><strong>Who to ask.</strong> The one decision the agent is not allowed to make alone, and who owns it.</li>
+</ol>
+
+<h2>The failure mode to watch for</h2>
+<p>The most expensive spec is not the vague one. It is the one that is precise about the <em>how</em> and silent about the <em>why</em>. You get back exactly what you asked for, it takes forty minutes to review, and only then does someone notice the underlying request was wrong. Intent first, then instructions.</p>
+
+<footer>Maintained by Sona Arajyan. These are personal working notes and not documentation for any product.</footer>
+</div></body></html>
