@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The queue is the product</title>
+<meta name="description" content="Teams adopt agents and then route the work through direct messages. That is where the throughput goes.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="home" href="./">Notes on handing work to coding agents</a>
+<div class="sub">Working notes, updated as I learn things the hard way.</div></header>
+
+<h1>The queue is the product</h1>
+<p class="lede">Most teams I have seen get agents working and then hand tasks around in DMs. The agent was never the bottleneck.</p>
+
+<p>The sequence is consistent. Someone proves an agent can do a category of work. Everyone agrees it is useful. And then the actual mechanism for getting a task from the person who wants it to the person who will run it is... a message. Maybe a thread. Occasionally a spreadsheet.</p>
+
+<p>That mechanism is the whole system, and nobody designs it.</p>
+
+<h2>What a DM cannot do</h2>
+<ul>
+<li><strong>It cannot be claimed.</strong> A message goes to one person. If they are busy, the work waits for them specifically, even when three other people had capacity. This is the single largest source of stall.</li>
+<li><strong>It has no state.</strong> Nobody can tell whether a task is unstarted, running, or finished without asking, so people ask, which costs more attention than the task.</li>
+<li><strong>It leaves no record.</strong> Six weeks later, "why was this done this way" has no answer, because the reasoning was in a thread that scrolled away.</li>
+<li><strong>It cannot be prioritised.</strong> Ten DMs are not a backlog. There is no shared view of what matters, so what gets done is whoever asked most recently or most loudly.</li>
+</ul>
+
+<h2>The minimum that fixes it</h2>
+<p>You do not need much. A list, visible to everyone who could run something, where each item can be claimed by exactly one person and carries its own context. That is close to the whole requirement. The sophisticated features people ask about &mdash; routing rules, capacity modelling, scoring &mdash; are refinements on top of a thing most teams do not have at all.</p>
+
+<p>The reason to be strict about it is that the claim is what converts an ambient sense of "someone should do this" into one person's actual commitment. Without a claim step, work does not get refused, it gets ignored, and ignoring is invisible.</p>
+
+<h2>Why this gets skipped</h2>
+<p>Because it feels like process overhead at exactly the moment everyone is excited about the capability. It is much more fun to improve the prompt than to build the queue. Then six months later throughput is flat and the conclusion is "agents did not work for us", when what did not work was the routing.</p>
+
+<p>If you want a picture of what the queue looks like when it is treated as the product rather than an afterthought, <a href="https://wagglet.com/">this is one implementation of it</a>.</p>
+
+<footer>Maintained by Sona Arajyan. These are personal working notes and not documentation for any product.</footer>
+</div></body></html>

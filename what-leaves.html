@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What actually leaves your machine</title>
+<meta name="description" content="Before routing work through anything, work out which of four categories of data it receives. Most anxiety is aimed at the wrong one.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="home" href="./">Notes on handing work to coding agents</a>
+<div class="sub">Working notes, updated as I learn things the hard way.</div></header>
+
+<h1>What actually leaves your machine</h1>
+<p class="lede">People worry about their source code and then paste an API key into a task description. The risk is usually not where the worry is.</p>
+
+<p>When a tool sits between your team and a coding agent, it is worth being concrete about what it receives, because the categories have very different consequences and they get discussed as one undifferentiated fear.</p>
+
+<h2>Four categories, in increasing order of how much I care</h2>
+<ul>
+<li><strong>Task text.</strong> What you wrote in the brief. Almost always the largest volume and the least sensitive &mdash; until someone pastes a credential or a customer's data into it, which happens more than anyone admits. This is a training problem, not a vendor problem.</li>
+<li><strong>Repository metadata.</strong> Names, paths, branch names. Low sensitivity individually, but collectively it maps your architecture and your roadmap. Worth knowing it is retained; rarely worth blocking over.</li>
+<li><strong>Source code itself.</strong> The one everyone asks about first. The question that matters is not whether the agent sees it &mdash; it must, to work &mdash; but whether the routing layer in the middle also stores it, and for how long.</li>
+<li><strong>Credentials.</strong> The only category where a mistake is unrecoverable. If any component holds a token that can act as a person, that component is now part of your attack surface permanently, and no retention policy fixes a leak after the fact.</li>
+</ul>
+
+<h2>The question that separates designs</h2>
+<p>Ask where the agent authenticates. If the runner uses their own account and the middle layer never possesses a provider key, the fourth category is empty by construction &mdash; not by policy, by design. That distinction is worth more than any number of assurances about encryption at rest, because it removes the failure mode instead of mitigating it.</p>
+
+<p>The same logic applies to whatever context capability the agent gets. A read-only, scope-limited, expiring credential that dies when the task ends is a fundamentally different object from a long-lived token with write access, even though both are "an API key" in a diagram.</p>
+
+<h2>What to do about the first category</h2>
+<p>Since task text is where real secrets actually end up, put a secret scan in front of it. A regex sweep for your own credential prefixes, run before a task is published, catches the realistic version of this problem. It is unglamorous and it will find something within a month.</p>
+
+<p>Whatever tool you use, read its published data practices rather than inferring them &mdash; <a href="https://wagglet.com/privacy">here is one</a>, as a sample of the level of specificity worth expecting.</p>
+
+<footer>Maintained by Sona Arajyan. These are personal working notes and not documentation for any product.</footer>
+</div></body></html>

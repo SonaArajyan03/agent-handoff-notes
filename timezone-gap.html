@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Handing off across a timezone gap</title>
+<meta name="description" content="Asynchronous handoff fails on the round trip, not the work. Three things that remove the second question.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="home" href="./">Notes on handing work to coding agents</a>
+<div class="sub">Working notes, updated as I learn things the hard way.</div></header>
+
+<h1>Handing off across a timezone gap</h1>
+<p class="lede">If a clarifying question costs a full day, the brief has to be good enough that nobody needs to ask one.</p>
+
+<p>Same-room handoff is forgiving. The runner starts, hits something ambiguous, turns around and asks, and thirty seconds later they are moving again. That forgiveness is doing enormous invisible work, and it disappears completely when the two people are eight hours apart.</p>
+
+<p>Across a gap, one ambiguity costs a day. Two sequential ambiguities cost two. Most stalled asynchronous work I have seen is not hard work &mdash; it is easy work that needed three answers, delivered one per day.</p>
+
+<h2>The three that remove most questions</h2>
+<ul>
+<li><strong>State the goal, not only the change.</strong> "Add a retry" leaves the runner guessing at every parameter. "Make this survive a transient network blip during deploy, we see about one a week" lets them make the small decisions themselves and be right. Intent travels better than instructions.</li>
+<li><strong>Pre-answer the obvious fork.</strong> There is nearly always one decision point you can predict &mdash; which of two patterns, whether to cover the edge case, whether to update the tests in the same change. Answer it in the brief. It costs one sentence and saves a day.</li>
+<li><strong>Say what to do when blocked.</strong> Without this, a blocked runner picks between guessing and stopping, and both are bad. "If X is unavailable, stop and write down what you found" makes stopping the correct, expected outcome rather than a failure to be avoided.</li>
+</ul>
+
+<h2>The habit worth building</h2>
+<p>Write the brief and then read it as the runner, deliberately looking for the first place you would have to ask something. Fix that one thing. It is a two-minute pass and it removes most of the round trips, because the first question is usually the only one that would have been asked.</p>
+
+<h2>The upside nobody mentions</h2>
+<p>Briefs written for a timezone gap are simply better briefs. The discipline of assuming no follow-up is available produces the clarity that same-room handoffs let you skip. Teams that learn it asynchronously tend to hand off better in person too.</p>
+
+<p>I have found other people's field notes more useful than any framework here &mdash; <a href="https://wagglet.com/blog">this set</a> is where several of the ideas above came from.</p>
+
+<footer>Maintained by Sona Arajyan. These are personal working notes and not documentation for any product.</footer>
+</div></body></html>
