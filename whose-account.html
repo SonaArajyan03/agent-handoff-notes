@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Whose account runs the agent</title>
+<meta name="description" content="Pooling provider keys is the obvious way to share agent capacity and the wrong one. What breaks, and the alternative.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="home" href="./">Notes on handing work to coding agents</a>
+<div class="sub">Working notes, updated as I learn things the hard way.</div></header>
+
+<h1>Whose account runs the agent</h1>
+<p class="lede">The moment you share agent work across a team, you have to decide whose subscription pays for it. Most teams answer this badly on the first try.</p>
+
+<p>The obvious answer is a shared key. One org account, one balance, everybody draws from it. It takes an afternoon to set up and it is wrong in three ways that only show up later.</p>
+
+<h2>What a shared key costs you</h2>
+<ul>
+<li><strong>Attribution disappears.</strong> When every request comes from the same key, you cannot tell whose work burned the budget, which means you cannot tell which work was worth it. You will discover this during the first bill that surprises somebody.</li>
+<li><strong>The blast radius is everyone.</strong> One leaked key, one rate limit hit, one account suspension, and the whole team stops. Shared credentials convert an individual problem into an outage.</li>
+<li><strong>It usually violates the terms.</strong> Individual coding-agent subscriptions are generally licensed per seat, and routing a team through one is the kind of thing that gets noticed at renewal. Worth reading your own agreement rather than taking my word for it.</li>
+</ul>
+
+<h2>The alternative that seems worse and is not</h2>
+<p>Move the <em>task</em>, not the credential. Whoever runs the work runs it on their own authenticated account, with their own limits and their own bill. What travels between people is the prepared work: the intent, the constraints, the context, the acceptance check.</p>
+
+<p>The first objection is that this wastes capacity, because now you cannot pool it. In practice the opposite happens. Per-seat limits strand capacity precisely because it cannot be pooled &mdash; so the fix is not pooling the accounts, it is routing the work to whichever seat has room. Same effect, none of the attribution or security cost.</p>
+
+<p>The second objection is that it is more coordination. True, and this is the real trade. You are paying in workflow to avoid paying in credentials, and the workflow cost is one you can automate while the credential cost is one you cannot undo.</p>
+
+<h2>The test I use</h2>
+<p>If a piece of infrastructure needs to hold a credential that could act as a person, ask what it can do with that credential when it is wrong. If the answer is &ldquo;anything that person could do&rdquo;, the design is wrong regardless of how careful the code is. Bound the capability at issue time, not at intent time.</p>
+
+<p><a href="https://wagglet.com/how-it-works">This description of the handoff stages</a> lays out the version where the runner's own account does the work and only the prepared task moves. It is a useful reference point even if you build the routing yourself.</p>
+
+<footer>Maintained by Sona Arajyan. These are personal working notes and not documentation for any product.</footer>
+</div></body></html>

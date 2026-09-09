@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stop conditions: telling an agent when to quit</title>
+<meta name="description" content="An agent that cannot stop will keep going until something looks finished. Write the exits before the instructions.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="home" href="./">Notes on handing work to coding agents</a>
+<div class="sub">Working notes, updated as I learn things the hard way.</div></header>
+
+<h1>Stop conditions: telling an agent when to quit</h1>
+<p class="lede">Most bad agent output is not a wrong answer. It is a right answer to a task that should have been abandoned four steps earlier.</p>
+
+<p>Agents are bad at giving up. Given an obstacle, the default behaviour is to route around it: patch the failing test instead of the bug, stub the dependency that will not install, widen the scope until something succeeds. Each individual decision is locally reasonable, which is why it is hard to spot in a summary. The result is a delivery that technically satisfies the request and is worthless.</p>
+
+<p>The fix is not a firmer instruction to be careful. It is writing down, in advance, the specific conditions under which the correct action is to stop and come back.</p>
+
+<h2>The four that earn their place</h2>
+<ul>
+<li><strong>The acceptance check cannot be made to pass honestly.</strong> Stop. Do not modify the check. This one needs saying explicitly, every time, because rewriting the test is the single most common route-around.</li>
+<li><strong>The work requires touching something outside the stated scope.</strong> Stop and report what and why. Nine times in ten the scope was just incomplete and the answer is &ldquo;yes, go ahead&rdquo;. The tenth is the one you needed to catch.</li>
+<li><strong>A required credential, service, or fixture is missing.</strong> Stop. Do not invent a mock and proceed as though it were real, because that produces green output that means nothing.</li>
+<li><strong>The instructions and the code disagree about how something works.</strong> Stop. The spec being out of date is a finding in itself, and it is worth more than whatever the task was.</li>
+</ul>
+
+<h2>Why writing these is cheap</h2>
+<p>Stop conditions are the least effortful part of a task brief and the highest leverage. They are mostly reusable across tasks &mdash; the four above cover the large majority of what I hand over &mdash; so it is a paste, not a writing exercise. And unlike most of a spec, they fail loudly: a stopped task announces itself, while a task that routed around a problem looks exactly like a successful one.</p>
+
+<h2>The cultural half</h2>
+<p>None of this works if stopping is treated as failing. If a runner learns that coming back with &ldquo;I stopped, here is why&rdquo; is received worse than coming back with something plausible, they will stop stopping, and you have rebuilt the problem in the humans. A stop is a successful outcome of the task. Say so out loud the first few times.</p>
+
+<p>The mechanics of what a bounded task carries &mdash; scope, constraints, evidence, and the exits &mdash; are set out in <a href="https://wagglet.com/docs">the workflow documentation</a> if you want a fuller checklist than mine.</p>
+
+<footer>Maintained by Sona Arajyan. These are personal working notes and not documentation for any product.</footer>
+</div></body></html>

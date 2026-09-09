@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What counts as evidence that agent work is done</title>
+<meta name="description" content="A delivered task needs proof a reviewer can check in two minutes. Four kinds of evidence, ranked by how little trust they require.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="home" href="./">Notes on handing work to coding agents</a>
+<div class="sub">Working notes, updated as I learn things the hard way.</div></header>
+
+<h1>What counts as evidence that agent work is done</h1>
+<p class="lede">&ldquo;It works&rdquo; is not evidence. Neither is a summary written by the same thing that did the work.</p>
+
+<p>The awkward part of reviewing agent output is that the report and the work come from the same source. If the agent misunderstood the task, it will also misunderstand what it just did, and it will tell you so fluently. A summary is therefore the weakest artifact in the pile, even though it is the one most people read first.</p>
+
+<p>What I want instead is evidence that would survive the agent being wrong about itself.</p>
+
+<h2>Four kinds, weakest to strongest</h2>
+<ul>
+<li><strong>A narrative summary.</strong> Useful for orientation, worth nothing as proof. Read it last, not first, so it does not frame what you notice in the diff.</li>
+<li><strong>A diff.</strong> Real, but it only tells you what changed, not whether the change is correct. Its main value is negative: it shows you the files nobody mentioned.</li>
+<li><strong>A command and its output.</strong> Now we are somewhere. A test run, a build, a script that exits zero. The reviewer can re-run it. This is the first artifact that does not require trusting anybody.</li>
+<li><strong>A command the reviewer wrote before the work started.</strong> The strongest form, and the cheapest to produce, because you were going to have to decide what &ldquo;done&rdquo; meant anyway. Writing it first also stops the acceptance criteria from quietly bending to fit whatever came back.</li>
+</ul>
+
+<h2>The two-minute rule</h2>
+<p>If checking a delivery takes longer than a couple of minutes of a reviewer's attention, the review will degrade into skimming, and then into rubber-stamping. That is not a discipline problem, it is a queue problem: reviewers batch, and batched reviewers approximate.</p>
+
+<p>So the constraint I hold myself to when preparing a task is that the acceptance evidence has to be checkable in about two minutes by someone who did not watch the work happen. If I cannot get it under that, the task is too big, or the criteria are too vague, and both of those are fixable before anything is handed over rather than after.</p>
+
+<h2>Receipts beat status</h2>
+<p>The related failure is treating a status field as if it were evidence. A card in a &ldquo;Done&rdquo; column records that somebody moved it. It does not record what was requested, what came back, or who decided the result was acceptable. Those are three different facts and collapsing them into one word is how teams lose the ability to answer &ldquo;when did this break?&rdquo; six weeks later.</p>
+
+<p>Keeping each of those as its own recorded decision is the part I have seen teams skip and then regret. <a href="https://wagglet.com/blog/wagglet-workflow-request-draft-ticket-delivery">This walkthrough of a work item from request to delivery</a> is a good illustration of the separation, whatever tooling you use to get it.</p>
+
+<footer>Maintained by Sona Arajyan. These are personal working notes and not documentation for any product.</footer>
+</div></body></html>

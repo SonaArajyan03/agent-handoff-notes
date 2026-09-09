@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fast tools, slow studio</title>
+<meta name="description" content="Every part of a game build got faster and the production loop did not. Where the time actually goes.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="home" href="./">Notes on handing work to coding agents</a>
+<div class="sub">Working notes, updated as I learn things the hard way.</div></header>
+
+<h1>Fast tools, slow studio</h1>
+<p class="lede">You can shorten every build step in a game studio and still ship at the same rate. I have watched it happen.</p>
+
+<p>The tooling story of the last two years is genuinely good. Renderers got faster. Effects became editable as data instead of code. Asset pipelines stopped being a full-time job. Any individual step in making a change is meaningfully quicker than it was.</p>
+
+<p>And then the feature still takes three weeks, because the time was never in the steps.</p>
+
+<h2>Where it actually goes</h2>
+<p>Watch a change from idea to players and the stalls are almost all handoffs, not work:</p>
+<ul>
+<li>The idea waits for someone to decide it is worth specifying.</li>
+<li>The spec waits for the one engineer who knows that part of the repo.</li>
+<li>The producer knows what they want and does not know how to ask an agent for it.</li>
+<li>The artist could sanity-check the result and cannot start the project.</li>
+<li>The finished change waits because nobody agreed in advance what proof would make it safe to ship.</li>
+</ul>
+
+<p>Not one of those is fixed by a faster renderer. They are all coordination, and coordination does not benefit from tooling that makes the coding part cheaper. If anything it gets worse: cheaper production means more changes in flight, and more changes in flight means more queueing at exactly these points.</p>
+
+<h2>The metric that misleads</h2>
+<p>Studios measure iteration speed as save-to-preview. It is easy to measure and it is the wrong interval. The interval that matters is decision to verified player outcome, and it contains all five stalls above plus the two most people forget: the wait for review, and the wait for someone to confirm the thing actually landed.</p>
+
+<p>When we started timing the full interval honestly, the coding portion was not the majority of it. That was uncomfortable, because the coding portion is the part we had been optimising.</p>
+
+<h2>What I would fix first</h2>
+<p>The cheapest win is the entrance problem &mdash; making it possible for more than one person to start a given piece of work. The second is agreeing on acceptance before the work rather than after, which removes an entire round trip. Both are process, not tools, and both are unglamorous enough that they lose to buying something.</p>
+
+<p><a href="https://wagglet.com/blog/ai-native-mobile-game-studio-stack">This argument about the missing layer in the AI-native studio stack</a> makes the case more thoroughly, and from inside an actual game studio rather than from a tools vendor's slide.</p>
+
+<footer>Maintained by Sona Arajyan. These are personal working notes and not documentation for any product.</footer>
+</div></body></html>
